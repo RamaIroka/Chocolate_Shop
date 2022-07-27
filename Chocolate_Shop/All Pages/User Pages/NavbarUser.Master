@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavbarUser.Master.cs" Inherits="Chocolate_Shop.All_Pages.User_Pages.Navbar" %>
+
+<!DOCTYPE html>
+
+<html dir="ltr" lang="he">
+
+<head runat="server">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chocolate Shop</title>
+
+    <!--- CSS -->
+    <link href="../../Style%20CSS/Navbar.css" rel="stylesheet" />
+    <!--- Bootstrap -->
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Bootstrap/css/all.min.css" rel="stylesheet" />
+    <!--- JS -->
+    <script src="../../Bootstrap/js/all.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body dir="rtl" lang="he">
+    <form id="form1" runat="server">
+        <%--Menu--%> 
+        <nav class="navbar navbar-expand-lg light bg-light sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="Home.aspx">
+                    <img src="../../Images/DesignImage/chocoline.png" alt="Chocoline-logo" />
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#main"
+                    aria-controls="main"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="main">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link p-2 p-lg-3 active" href="Home.aspx">בית</a>
+                        </li>
+                        <%--Categories--%>
+                        <asp:Repeater ID="RepeaterCategories" runat="server">
+                            <ItemTemplate>
+                                <li class="nav-item">
+                                    <a class="nav-link p-2 p-lg-3" href="Products.aspx?cat=<%# Eval("CatID") %>'">
+                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("CatName") %>'></asp:Label>
+                                    </a>
+                                    <asp:HiddenField ID="CategoryID" runat="server" Value='<%# Eval("CatID") %>' />
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <%--Categories--%>
+                    </ul>
+                    <div class="search ps-3 pe-3 d-lg-block">
+                        <a href="Products.aspx" style="text-decoration: none;">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <asp:Label ID="lblsearch" runat="server" Text="חפש" class="tools"></asp:Label>
+                        </a>
+                    </div>
+                    <div class="cart ps-3 pe-3 d-lg-block">
+                        <a href="Cart.aspx" style="text-decoration: none;">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <asp:Label ID="lblcart" runat="server" Text="סל קניות" class="tools"></asp:Label>
+                        </a>
+                    </div>
+                    <div class="user ps-3 pe-3 d-lg-block">
+                        <a class="signup" href="SignUp.aspx" style="text-decoration: none;">
+                            <i class="fa-solid fa-user ps-1"></i>
+                            <asp:Label ID="lblUser" runat="server" Text="אזור אישי" class="tools"></asp:Label>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+        <%--Menu--%>
+
+
+
+        <%--Pages--%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <%--Pages--%>
+
+
+
+        <%--Footer--%>
+
+               <%--Footer--%>
+        <div class="text-center p-3 light bg-light" style="font-size:20px;">
+            <label style="color:black;">Copyright &copy; 2022 כל הזכויות שמורות</label>
+    <a class="text-dark" href="Home.aspx" style="color:#ff9a9c;">ChocoLine.co.il</a>
+        </div>
+        <%--Footer--%>
+    </form>
+</body>
+</html>
+
